@@ -1,2 +1,6 @@
 *.o
 main
+build
+parser.cpp
+parser.hpp
+lexer.cpp

@@ -10,35 +10,53 @@ PARSER = parser.y
 PARCPP = parser.cpp
 
 CPP = g++
-CPPFLAGS = -O2 -Wall -Wshadow -DDEBUG
+CPPFLAGS = -std=c++11 -O2 -Wall -Wshadow -DDEBUG -I.
 
+MODULES = ast verilog context
 SOURCES = $(wildcard *.cpp)
-OBJS = $(patsubst %.cpp, %.o, $(SOURCES))
+OBJDIR = build
+SOURCES += $(foreach sdir, $(MODULES), $(wildcard $(sdir)/*.cpp))
+OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(SOURCES))
+
+NOH = main.h parser.h lexer.h
 
 EXEC = main
 CC = 
 MAIN = main.cpp
+
+dir_guard = @mkdir -p $(@D)
 
 all: exec
 
 exec: lex $(OBJS) 
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(EXEC)
 
-lex: par $(LEXCPP) lexer.o
+lex: par $(LEXCPP) $(OBJDIR)/lexer.o
 	
 $(LEXCPP): $(LEXER)
 	$(LEX) -o $(LEXCPP) $(LEXER) 
 
-par: $(PARCPP) parser.o
+par: $(PARCPP) $(OBJDIR)/parser.o
 
 $(PARCPP): $(PARSER)
 	$(BISON) -d -o $(PARCPP) $(PARSER)
 
 clean:
-	rm -f *.o
+	rm -rf build/*
 
-%.o: %.cpp
+$(OBJDIR)/lexer.o: lexer.cpp
+	$(dir_guard)
 	g++ $(CPPFLAGS) -c -o $@ $<
+
+$(OBJDIR)/parser.o: parser.cpp
+	$(dir_guard)
+	g++ $(CPPFLAGS) -c -o $@ $<
+
+$(OBJDIR)/%.o: %.cpp %.h
+	$(dir_guard)
+	g++ $(CPPFLAGS) -c -o $@ $<
+
+$(NOH):
 
 test: all
 	./$(EXEC)

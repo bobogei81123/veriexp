@@ -1,6 +1,6 @@
 %{
 #include <bits/stdc++.h>
-#include "node/node.h"
+#include "ast/node.h"
 using namespace std;
 #include "parser.hpp"
 
@@ -16,6 +16,8 @@ ws [ \t]
 {ws}+
 \n      cout << endl;
 "//"[^\n]*      cout << "Comment = " << yytext << endl;
+
+return { cout << "[RETURN]" << ' '; return RETURN;}
 
 [a-zA-Z_][a-zA-Z_0-9]* {
     cout << "ID(" << yytext << ")" << endl;

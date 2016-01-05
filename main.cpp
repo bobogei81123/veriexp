@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
-#include "node/node.h"
+#include "ast/node.h"
+#include "context/context.h"
 
 using namespace std;
 
@@ -8,6 +9,8 @@ extern NFunctionDeclaration *main_func;
 
 int main(){
     yyparse();
-    main_func->generate();
+    Context *context = new Context();
+    main_func->generate(context);
+    context->module->generate();
 }
 
