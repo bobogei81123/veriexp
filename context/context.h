@@ -4,7 +4,8 @@
 
 struct StateManager;
 
-#include "verilog/node.h"
+#include "verilog/variable/named_variable.h"
+#include "verilog/module/module.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ struct Context {
     Context();
 
     void add_input (string name, int);
-    void add_output(string name, string);
+    void add_output(string name, int);
     void add_wire  (string name, string);
     void add_reg   (string name, string);
 

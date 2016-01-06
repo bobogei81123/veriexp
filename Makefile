@@ -13,9 +13,10 @@ CPP = g++
 CPPFLAGS = -std=c++11 -O2 -Wall -Wshadow -DDEBUG -I.
 
 MODULES = ast verilog context
-SOURCES = $(wildcard *.cpp)
+#SOURCES = lexer.cpp parser.cpp
+SOURCES = $(patsubst ./%, %, $(shell find . -name "*.cpp"))
 OBJDIR = build
-SOURCES += $(foreach sdir, $(MODULES), $(wildcard $(sdir)/*.cpp))
+#SOURCES += $(foreach sdir, $(MODULES), $(wildcard $(sdir)/**/*.cpp))
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 NOH = main.h parser.h lexer.h

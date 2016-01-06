@@ -3,13 +3,15 @@
 Context::Context() {
     state_manager = new StateManager();
     module = new VModule();
-
-    add_input("clk", 1);
-    add_input("reset", 1);
 }
 
 void Context::add_input (string name, int length) {
-    auto nv = new VVariable(name, VVarWRType::Wire, VVarIOType::Input, length);
+    auto nv = new VNamedVariable(name, length, VVarWRType::Wire, VVarIOType::Input);
+    module->vars.push_back(nv);
+}
+
+void Context::add_output (string name, int length) {
+    auto nv = new VNamedVariable(name, length, VVarWRType::Reg, VVarIOType::Output);
     module->vars.push_back(nv);
 }
 

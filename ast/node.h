@@ -59,12 +59,7 @@ struct NFunctionDeclaration : NStatement {
         NBlock *block_
     ) : type(type_), id(id_), args(args_), block(block_) { }
 
-    virtual void generate(Context *context) {
-        context->module->name = id->name;
-        for (auto x: args) {
-            x->generate(context);
-        }
-    }
+    virtual void generate(Context *context);
 };
 
 struct NType : NExpression {
