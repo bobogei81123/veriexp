@@ -1,6 +1,6 @@
 %{
 #include <bits/stdc++.h>
-#include "ast/node.h"
+#include "ast/all_node.h"
 using namespace std;
 #include "parser.hpp"
 

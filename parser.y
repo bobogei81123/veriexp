@@ -1,8 +1,9 @@
 %{
 #include <bits/stdc++.h>
-#include "ast/node.h"
+#include "ast/all_node.h"
 using namespace std;
 extern int yylex();
+
 void yyerror(const char *s) { cout << "ERROR = " << s << endl; }
 NFunctionDeclaration *main_func;
 %}
@@ -22,9 +23,6 @@ NFunctionDeclaration *main_func;
 %union {
     string *str;
     Node *node;
-    NBlock *block;
-    NExpression *expr;
-    NStatement *stmt;
     NType *type;
     NIdentifier *ident;
     NVariableDeclaration *var_decl;

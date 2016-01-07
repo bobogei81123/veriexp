@@ -1,6 +1,4 @@
 
 int f(int a, int b) {
-    int t;
-    t = a + b;
-    return t;
+    return a;
 }

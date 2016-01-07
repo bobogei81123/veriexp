@@ -1,0 +1,22 @@
+#ifndef NODE_H_GUARD
+#define NODE_H_GUARD
+#include <bits/stdc++.h>
+#include "context/context.h"
+#include "verilog/node.h"
+using namespace std;
+
+struct NVariableDeclaration;
+struct NType;
+struct NIdentifier;
+struct NBlock;
+struct NFuncArgDeclaration;
+typedef vector<NVariableDeclaration*> VariableList;
+
+
+
+
+
+
+
+
+#endif 

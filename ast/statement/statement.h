@@ -1,9 +1,8 @@
 #pragma once
 #include "global.h"
-#include "context/context.h"
+#include "ast/node.h"
 
-struct Node {
-    //virtual ~Node() {}
+struct NStatement : Node {
     virtual void generate(Context *context) {}
 };
 

@@ -1,9 +1,8 @@
 #pragma once
-#include "global.h"
-#include "context/context.h"
 
-struct Node {
-    //virtual ~Node() {}
+#include "global.h"
+#include "verilog/node.h"
+
+struct VStatement : VNode {
     virtual void generate(Context *context) {}
 };
-

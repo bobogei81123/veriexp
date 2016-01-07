@@ -8,12 +8,15 @@
 struct VModule;
 
 #include "context/context.h"
+#include "verilog/statement/block.h"
 
 typedef vector<VNamedVariable*> VNamedVarList;
 
 struct VModule : VNode {
     string name;
     VNamedVarList vars;
+    typedef pair<VBlock*, int> StateDescription;
+    map<int, StateDescription> state_desc;
 
     StateManager *state_manager;
 
